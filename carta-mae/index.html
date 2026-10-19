@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz aniversário, Mãe ❤️</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: radial-gradient(circle at center, #32152f, #100914 70%);
+    color: white;
+    font-family: Georgia, serif;
+}
+
+
+/* =========================
+   ESTRELAS
+========================= */
+
+.estrelas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.estrela {
+    position: absolute;
+    color: white;
+    animation: piscar 2s infinite alternate;
+    z-index: 0;
+}
+
+@keyframes piscar {
+    from { opacity: .2; }
+    to   { opacity: 1; }
+}
+
+
+/* =========================
+   TELAS
+========================= */
+
+.tela {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 25px;
+    position: relative;
+    z-index: 1;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* =========================
+   ABERTURA
+========================= */
+
+#inicio h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+#inicio p {
+    font-size: 22px;
+    line-height: 1.6;
+}
+
+.botao {
+    margin-top: 25px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    background: #ff4f91;
+    color: white;
+    font-size: 18px;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 0 25px #ff4f91;
+    transition: .3s;
+}
+
+.botao:hover {
+    transform: scale(1.08);
+}
+
+
+/* =========================
+   BOLO
+========================= */
+
+#boloTela {
+    animation: aparecer 1s ease;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: scale(.5); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+.bolo {
+    position: relative;
+    width: 260px;
+    height: 230px;
+    margin-top: 40px;
+}
+
+/* prato */
+.prato {
+    position: absolute;
+    bottom: 0;
+    left: 5px;
+    width: 250px;
+    height: 20px;
+    background: #eee;
+    border-radius: 50%;
+}
+
+/* camadas */
+.camada {
+    position: absolute;
+    left: 30px;
+    width: 200px;
+    height: 55px;
+    border-radius: 12px;
+    background: #7b294e;
+}
+
+.camada1 {
+    bottom: 20px;
+}
+
+.camada2 {
+    bottom: 65px;
+    width: 180px;
+    left: 40px;
+    background: #d94f83;
+}
+
+/* cobertura */
+.cobertura {
+    position: absolute;
+    bottom: 105px;
+    left: 35px;
+    width: 190px;
+    height: 35px;
+    background: #ffd6e7;
+    border-radius: 20px;
+}
+
+/* vela */
+.vela {
+    position: absolute;
+    bottom: 135px;
+    left: 120px;
+    width: 20px;
+    height: 65px;
+    background: repeating-linear-gradient(
+        45deg,
+        #fff,
+        #fff 8px,
+        #ff6f9f 8px,
+        #ff6f9f 16px
+    );
+    border-radius: 5px;
+}
+
+/* chama */
+.chama {
+    position: absolute;
+    bottom: 198px;
+    left: 121px;
+    width: 18px;
+    height: 25px;
+    background: #ffd54f;
+    border-radius: 50%;
+    box-shadow: 0 0 20px #ff9800;
+    animation: chama .5s infinite alternate;
+}
+
+@keyframes chama {
+    from { transform: scale(1); }
+    to   { transform: scale(1.2); }
+}
+
+
+/* =========================
+   EXPLOSÃO
+========================= */
+
+.explodir {
+    animation: explodir 1.5s forwards;
+}
+
+@keyframes explodir {
+    0%   { transform: scale(1);   opacity: 1; }
+    60%  { transform: scale(1.5); opacity: .7; }
+    100% { transform: scale(2.5); opacity: 0; }
+}
+
+
+/* =========================
+   CORAÇÃO
+========================= */
+
+.coracao {
+    font-size: 130px;
+    opacity: 0;
+    transform: scale(0);
+    animation: formarCoracao 2s forwards;
+    animation-delay: 1s;
+    text-shadow: 0 0 30px #ff2f78;
+}
+
+@keyframes formarCoracao {
+    0%   { opacity: 0; transform: scale(0); }
+    60%  { opacity: 1; transform: scale(1.3); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.mensagem {
+    margin-top: 20px;
+    font-size: 30px;
+    line-height: 1.4;
+    opacity: 0;
+    animation: aparecerTexto 2s forwards;
+    animation-delay: 3s;
+}
+
+@keyframes aparecerTexto {
+    to { opacity: 1; }
+}
+
+
+/* =========================
+   GALERIA DE FOTOS
+========================= */
+
+#fotosTela {
+    min-height: 100vh;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.tituloFotos {
+    font-size: 34px;
+    margin-bottom: 10px;
+    color: #ffd6e7;
+    text-shadow: 0 0 15px #ff4f91;
+}
+
+.subtituloFotos {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.galeria {
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fotoContainer {
+    width: 100%;
+    max-width: 550px;
+    padding: 10px;
+    background: rgba(255, 255, 255, .12);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255, 80, 150, .35);
+    animation: aparecerFoto .8s ease;
+}
+
+.fotoContainer img {
+    width: 100%;
+    max-height: 65vh;
+    object-fit: contain;
+    display: block;
+    border-radius: 15px;
+    background: #180d18;
+}
+
+@keyframes aparecerFoto {
+    from { opacity: 0; transform: scale(.9); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+.contadorFoto {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #ffd6e7;
+}
+
+.botoesFotos {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.botaoFoto {
+    padding: 13px 22px;
+    border: none;
+    border-radius: 25px;
+    background: #ff4f91;
+    color: white;
+    font-size: 16px;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255, 79, 145, .6);
+    transition: .3s;
+}
+
+.botaoFoto:hover {
+    transform: scale(1.06);
+}
+
+.botaoVoltar {
+    background: #7b294e;
+}
+
+
+/* =========================
+   CARTA
+========================= */
+
+.carta {
+    max-width: 700px;
+    background: rgba(255, 255, 255, .95);
+    color: #4b2036;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 40px rgba(255, 80, 150, .4);
+    text-align: left;
+    line-height: 1.8;
+    font-size: 18px;
+    animation: carta 1.5s ease;
+}
+
+@keyframes carta {
+    from { opacity: 0; transform: translateY(50px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.carta h2 {
+    text-align: center;
+    color: #d6336c;
+    margin-top: 0;
+    text-wrap: balance;
+}
+
+.subtituloFotos {
+    text-wrap: balance;
+}
+
+.final {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 25px;
+    color: #d6336c;
+}
+
+
+/* =========================
+   CORAÇÕES FLUTUANDO
+========================= */
+
+.coracaozinho {
+    position: fixed;
+    bottom: -20px;
+    font-size: 20px;
+    animation: subir 5s linear forwards;
+    pointer-events: none;
+    z-index: 2;
+}
+
+@keyframes subir {
+    from { transform: translateY(0);      opacity: 1; }
+    to   { transform: translateY(-110vh); opacity: 0; }
+}
+
+/* na hora de ler a carta, os corações passam por trás do papel
+   para não atrapalhar a leitura */
+body.lendo .coracaozinho {
+    z-index: 0;
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 600px) {
+
+    #inicio h1 { font-size: 32px; }
+    #inicio p  { font-size: 18px; }
+
+    .coracao   { font-size: 100px; }
+    .mensagem  { font-size: 24px; }
+
+    .tituloFotos { font-size: 28px; }
+    .fotoContainer { max-width: 95vw; }
+
+    .carta {
+        padding: 25px;
+        font-size: 16px;
+    }
+
+    .final { font-size: 21px; }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<!-- ESTRELAS -->
+<div class="estrelas"></div>
+
+
+<!-- =========================
+     ABERTURA
+========================= -->
+
+<section id="inicio" class="tela">
+
+    <h1>Para você, Mãe ❤️</h1>
+
+    <p>
+        Hoje é o seu dia<br>
+        e eu preparei uma coisa<br>
+        muito especial para você...
+    </p>
+
+    <p>
+        <strong>Vem ver? ✨</strong>
+    </p>
+
+    <button class="botao" onclick="comecar()">
+        Clique aqui ❤️
+    </button>
+
+</section>
+
+
+<!-- =========================
+     BOLO
+========================= -->
+
+<section id="boloTela" class="tela hidden">
+
+    <h1>Uma pequena surpresa para você 🎂</h1>
+
+    <div class="bolo" id="bolo">
+
+        <div class="prato"></div>
+
+        <div class="camada camada1"></div>
+
+        <div class="camada camada2"></div>
+
+        <div class="cobertura"></div>
+
+        <div class="vela"></div>
+
+        <div class="chama"></div>
+
+    </div>
+
+    <p>
+        Feche os olhos
+        e faça um pedido... ❤️
+    </p>
+
+</section>
+
+
+<!-- =========================
+     CORAÇÃO
+========================= -->
+
+<section id="coracaoTela" class="tela hidden">
+
+    <div class="coracao">❤️</div>
+
+    <div class="mensagem">
+        <strong>Feliz aniversário,<br>Mãe!</strong>
+        <br>
+        você é o meu maior amor ❤️
+    </div>
+
+    <button class="botao" onclick="mostrarFotos()">
+        Antes da carta... veja
+        algumas lembranças 📸❤️
+    </button>
+
+</section>
+
+
+<!-- =========================
+     FOTOS
+========================= -->
+
+<section id="fotosTela" class="tela hidden">
+
+    <h1 class="tituloFotos">Momentos especiais ❤️</h1>
+
+    <p class="subtituloFotos">
+        Algumas lembranças
+        de você e de quem te ama...
+    </p>
+
+    <div class="galeria">
+
+        <div class="fotoContainer" id="fotoContainer">
+            <img id="fotoAtual" src="" alt="Foto da nossa família">
+        </div>
+
+        <div class="contadorFoto" id="contadorFoto"></div>
+
+        <div class="botoesFotos">
+
+            <button class="botaoFoto botaoVoltar" onclick="fotoAnterior()" id="botaoAnterior">
+                ← Voltar
+            </button>
+
+            <button class="botaoFoto" onclick="proximaFoto()" id="botaoProxima">
+                Próxima ❤️
+            </button>
+
+        </div>
+
+        <button class="botao hidden" onclick="mostrarCarta()" id="botaoCarta">
+            Ler minha carta para você 💌
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CARTA
+========================= -->
+
+<section id="cartaTela" class="tela hidden">
+
+    <div class="carta">
+
+        <h2>Feliz aniversário, mãe! 🎂🌷</h2>
+
+        <p>
+            Hoje é o dia de uma das pessoas mais importantes
+            da minha vida, aquela que merece todo o amor,
+            carinho e felicidade do mundo. Mãe, sou muito grato
+            a Deus por ter você na minha vida, por tudo que faz
+            por mim, por cada conselho, cada cuidado e por nunca
+            deixar de se preocupar comigo.
+        </p>
+
+        <p>
+            Sei que nem sempre consigo demonstrar o quanto você
+            é importante para mim, mas quero que saiba que te amo
+            muito e que sou muito feliz por ser seu filho. Você é
+            uma pessoa especial, que merece realizar todos os seus
+            sonhos e receber em dobro todo o bem que faz pelas
+            pessoas ao seu redor.
+        </p>
+
+        <p>
+            Que Deus abençoe sua vida, ilumine seus caminhos,
+            lhe dê muita saúde, paz, felicidade e muitos anos
+            de vida. Que nunca faltem motivos para sorrir e que
+            você continue sendo essa mulher incrível que tanto
+            amo e admiro.
+        </p>
+
+        <p>
+            <strong>Parabéns, minha mãe!</strong> ❤️ Que seu dia
+            seja tão lindo e especial quanto você. Te amo muito!
+            Que Deus me permita ter você ao meu lado por muitos
+            e muitos anos. 🙏❤️🎉
+        </p>
+
+        <div class="final">
+            Com todo o meu amor,
+            <br>
+            Carlos ❤️
+            <br><br>
+            <em>Seu filho</em>
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =========================
+   ESTRELAS NAS LATERAIS
+========================= */
+
+const estrelas = document.querySelector(".estrelas");
+
+for (let i = 0; i < 80; i++) {
+
+    const estrela = document.createElement("div");
+    estrela.className = "estrela";
+    estrela.innerHTML = "✦";
+
+    if (Math.random() < 0.5) {
+        estrela.style.left = (Math.random() * 25) + "%";
+    } else {
+        estrela.style.left = (75 + Math.random() * 25) + "%";
+    }
+
+    estrela.style.top = Math.random() * 100 + "%";
+    estrela.style.fontSize = (8 + Math.random() * 12) + "px";
+    estrela.style.animationDelay = Math.random() * 2 + "s";
+
+    estrelas.appendChild(estrela);
+}
+
+
+/* =========================
+   FUNÇÕES AUXILIARES
+========================= */
+
+function mostrar(id) {
+    document.getElementById(id).classList.remove("hidden");
+    window.scrollTo(0, 0);
+}
+
+function esconder(id) {
+    document.getElementById(id).classList.add("hidden");
+}
+
+
+/* =========================
+   COMEÇAR
+========================= */
+
+function comecar() {
+
+    esconder("inicio");
+    mostrar("boloTela");
+
+    // o bolo "explode"
+    setTimeout(() => {
+        document.getElementById("bolo").classList.add("explodir");
+    }, 3500);
+
+    // vai para a tela do coração
+    setTimeout(() => {
+        esconder("boloTela");
+        mostrar("coracaoTela");
+    }, 5000);
+
+}
+
+
+/* =========================
+   FOTOS
+   -------------------------
+   As fotos ficam na pasta "fotos", ao lado deste arquivo.
+   Para trocar, é só substituir os arquivos ou mudar esta lista.
+========================= */
+
+const fotos = [
+    "fotos/foto1.jpg",
+    "fotos/foto2.jpg",
+    "fotos/foto3.jpg",
+    "fotos/foto4.jpg"
+];
+
+let indice = 0;
+
+
+function mostrarFotos() {
+
+    esconder("coracaoTela");
+
+    // sem fotos? vai direto para a carta
+    if (fotos.length === 0) {
+        mostrarCarta();
+        return;
+    }
+
+    indice = 0;
+    mostrar("fotosTela");
+    atualizarFoto();
+
+}
+
+
+function atualizarFoto() {
+
+    const imagem    = document.getElementById("fotoAtual");
+    const contador  = document.getElementById("contadorFoto");
+    const container = document.getElementById("fotoContainer");
+
+    imagem.src = fotos[indice];
+
+    contador.innerHTML =
+        "Foto " + (indice + 1) + " de " + fotos.length + " ❤️";
+
+    // reinicia a animação da foto
+    container.style.animation = "none";
+    void container.offsetWidth;
+    container.style.animation = "aparecerFoto .8s ease";
+
+    // botão voltar
+    document.getElementById("botaoAnterior").style.display =
+        indice === 0 ? "none" : "inline-block";
+
+    // última foto: troca "Próxima" pelo botão da carta
+    const ultima = indice === fotos.length - 1;
+
+    document.getElementById("botaoProxima").style.display =
+        ultima ? "none" : "inline-block";
+
+    document.getElementById("botaoCarta").classList.toggle("hidden", !ultima);
+
+}
+
+
+function proximaFoto() {
+    if (indice < fotos.length - 1) {
+        indice++;
+        atualizarFoto();
+    }
+}
+
+
+function fotoAnterior() {
+    if (indice > 0) {
+        indice--;
+        atualizarFoto();
+    }
+}
+
+
+/* =========================
+   MOSTRAR CARTA
+========================= */
+
+function mostrarCarta() {
+
+    esconder("fotosTela");
+    mostrar("cartaTela");
+    document.body.classList.add("lendo");
+
+    // chuva de corações quando a carta abre
+    for (let i = 0; i < 30; i++) {
+        setTimeout(criarCoracao, i * 90);
+    }
+
+}
+
+
+/* =========================
+   CORAÇÕES FLUTUANDO
+========================= */
+
+function criarCoracao() {
+
+    const coracao = document.createElement("div");
+
+    coracao.className = "coracaozinho";
+    coracao.innerHTML = "❤️";
+    coracao.style.left = Math.random() * 100 + "vw";
+    coracao.style.animationDuration = (3 + Math.random() * 4) + "s";
+
+    document.body.appendChild(coracao);
+
+    setTimeout(() => {
+        coracao.remove();
+    }, 7000);
+
+}
+
+setInterval(criarCoracao, 700);
+
+</script>
+
+</body>
+
+</html>
